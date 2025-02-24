@@ -28,7 +28,6 @@ object HttpClientFactory {
                         },
                 )
             }
-            // TODO: Add Atom for 2nd screen
             defaultRequest {
                 contentType(Json)
             }
