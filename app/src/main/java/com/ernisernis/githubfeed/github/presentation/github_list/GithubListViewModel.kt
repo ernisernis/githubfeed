@@ -5,11 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ernisernis.githubfeed.core.domain.util.onSuccess
 import com.ernisernis.githubfeed.github.domain.GithubRepository
+import com.ernisernis.githubfeed.github.presentation.models.toFeedsUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.flow.update
 import javax.inject.Inject
 
 @HiltViewModel
@@ -20,14 +22,7 @@ class GithubListViewModel @Inject constructor(
     private val _state = MutableStateFlow(GithubListState())
     val state = _state
         .onStart {
-            githubRepository
-                .getFeeds()
-                .onSuccess { feeds ->
-                    Log.d("ERNIS33", ": $feeds")
-                }
-                .onSuccess { error ->
-                    Log.d("ERNIS33", ": $error")
-                }
+            getGithubFeeds()
         }
         .stateIn(
             scope = viewModelScope,
@@ -40,5 +35,19 @@ class GithubListViewModel @Inject constructor(
         when (action) {
             else -> Unit
         }
+    }
+
+    private suspend fun getGithubFeeds() {
+        githubRepository
+            .getFeeds()
+            .onSuccess { feeds ->
+                _state.update { it.copy(
+                    loading = false,
+                    feedsUi = feeds.toFeedsUi()
+                ) }
+            }
+            .onSuccess { error ->
+                Log.d("ERNIS33", ": $error")
+            }
     }
 }
