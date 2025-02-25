@@ -19,6 +19,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedInputField
 import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedItem
+import com.ernisernis.githubfeed.github.presentation.github_list.components.GithubListLoading
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
 
 
@@ -28,19 +29,27 @@ fun GithubListScreenRoot(
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    GithubListScreen(
-        state = state,
-        modifier = Modifier
-            .statusBarsPadding()
-            .background(MaterialTheme.colorScheme.background)
-            .fillMaxSize(),
-        onAction = { action ->
-            when (action)  {
-                else -> Unit
+    if (state.loading) {
+        GithubListLoading(
+            modifier = Modifier
+                .fillMaxSize()
+        )
+    } else {
+        GithubListScreen(
+            state = state,
+            modifier = Modifier
+                .statusBarsPadding()
+                .background(MaterialTheme.colorScheme.background)
+                .fillMaxSize(),
+            onAction = { action ->
+                when (action)  {
+                    else -> Unit
+                }
+                viewModel.onAction(action)
             }
-            viewModel.onAction(action)
-        }
-    )
+        )
+    }
+
 }
 
 @Composable
