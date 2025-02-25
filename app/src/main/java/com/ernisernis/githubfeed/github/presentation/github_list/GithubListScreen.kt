@@ -1,18 +1,20 @@
 package com.ernisernis.githubfeed.github.presentation.github_list
 
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedItem
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
 
 
@@ -26,6 +28,7 @@ fun GithubListScreenRoot(
         state = state,
         modifier = Modifier
             .statusBarsPadding()
+            .background(MaterialTheme.colorScheme.background)
             .fillMaxSize(),
         onAction = { action ->
             when (action)  {
@@ -42,15 +45,20 @@ fun GithubListScreen(
     modifier: Modifier = Modifier,
     onAction: (GithubListAction) -> Unit,
 ) {
-    Box(
-        modifier = modifier
-            .background(Color.Red)
-            .fillMaxSize(),
-        contentAlignment = Alignment.Center
+    AnimatedVisibility(
+        visible = state.feedsUi != null
     ) {
-        Text(
-            text = "Hello from Github list screen!"
-        )
+        Column(
+            modifier = modifier
+                .padding(16.dp),
+        ) {
+            FeedItem(
+                modifier = Modifier,
+                title = state.timelineState.title,
+                urlPathLink = state.feedsUi?.timelineUrl ?: "",
+                onClick = {}
+            )
+        }
     }
 }
 
@@ -62,7 +70,7 @@ fun GithubListScreenPreview() {
         GithubListScreen(
             state = state,
             modifier = Modifier
-                .background(Color.Red)
+                .background(MaterialTheme.colorScheme.background)
                 .fillMaxSize(),
             onAction = {}
         )
