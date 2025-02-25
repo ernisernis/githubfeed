@@ -40,6 +40,20 @@ class GithubListViewModel @Inject constructor(
                     )
                 ) }
             }
+            is GithubListAction.OnRepoDiscussionsInput1Change -> {
+                _state.update { it.copy(
+                    repoDiscussionsState = state.value.repoDiscussionsState.copy(
+                        input1 = action.text
+                    )
+                ) }
+            }
+            is GithubListAction.OnRepoDiscussionsInput2Change -> {
+                _state.update { it.copy(
+                    repoDiscussionsState = state.value.repoDiscussionsState.copy(
+                        input2 = action.text
+                    )
+                ) }
+            }
         }
     }
 

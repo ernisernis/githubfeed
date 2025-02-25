@@ -25,7 +25,9 @@ data class LinkUserState(
 data class RepositoryDiscussionsState(
     val title: String = "Discussions",
     val input1: String = "",
+    val input1Label: String = "user",
     val input2: String = "",
+    val input2Label: String = "repo",
 )
 
 data class RepositoryDiscussionsCategoryState(

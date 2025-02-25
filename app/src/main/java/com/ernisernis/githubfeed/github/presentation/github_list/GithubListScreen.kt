@@ -72,6 +72,23 @@ fun GithubListScreen(
                     )
                 }
             )
+            FeedItem(
+                title = state.repoDiscussionsState.title,
+                urlPathLink = state.feedsUi?.repositoryDiscussionsUrl ?: "",
+                onClick = {},
+                inputContent = {
+                    FeedInputField(
+                        inputText = state.repoDiscussionsState.input1,
+                        labelText = state.repoDiscussionsState.input1Label,
+                        onTextChange = { onAction(GithubListAction.OnRepoDiscussionsInput1Change(it)) }
+                    )
+                    FeedInputField(
+                        inputText = state.repoDiscussionsState.input2,
+                        labelText = state.repoDiscussionsState.input2Label,
+                        onTextChange = { onAction(GithubListAction.OnRepoDiscussionsInput2Change(it)) }
+                    )
+                }
+            )
         }
     }
 }
