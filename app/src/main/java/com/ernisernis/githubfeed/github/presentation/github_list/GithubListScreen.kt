@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -52,14 +54,18 @@ fun GithubListScreen(
     ) {
         Column(
             modifier = modifier
+                .verticalScroll(rememberScrollState())
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
+            // Timeline
             FeedItem(
                 title = state.timelineState.title,
                 urlPathLink = state.feedsUi?.timelineUrl ?: "",
                 onClick = {},
             )
+
+            // User
             FeedItem(
                 title = state.linkUserState.title,
                 urlPathLink = state.feedsUi?.userUrl ?: "",
@@ -72,9 +78,11 @@ fun GithubListScreen(
                     )
                 }
             )
+
+            // Discussions
             FeedItem(
                 title = state.repoDiscussionsState.title,
-                urlPathLink = state.feedsUi?.repositoryDiscussionsUrl ?: "",
+                urlPathLink = state.feedsUi?.repoDiscussionsUrl ?: "",
                 onClick = {},
                 inputContent = {
                     FeedInputField(
@@ -86,6 +94,30 @@ fun GithubListScreen(
                         inputText = state.repoDiscussionsState.input2,
                         labelText = state.repoDiscussionsState.input2Label,
                         onTextChange = { onAction(GithubListAction.OnRepoDiscussionsInput2Change(it)) }
+                    )
+                }
+            )
+
+            // Discussions Category
+            FeedItem(
+                title = state.repoDiscussionsCategoryState.title,
+                urlPathLink = state.feedsUi?.repoDiscussionsCategoryUrl ?: "",
+                onClick = {},
+                inputContent = {
+                    FeedInputField(
+                        inputText = state.repoDiscussionsCategoryState.input1,
+                        labelText = state.repoDiscussionsCategoryState.input1Label,
+                        onTextChange = { onAction(GithubListAction.OnRepoDiscussionsCategoryInput1Change(it)) }
+                    )
+                    FeedInputField(
+                        inputText = state.repoDiscussionsCategoryState.input2,
+                        labelText = state.repoDiscussionsCategoryState.input2Label,
+                        onTextChange = { onAction(GithubListAction.OnRepoDiscussionsCategoryInput2Change(it)) }
+                    )
+                    FeedInputField(
+                        inputText = state.repoDiscussionsCategoryState.input3,
+                        labelText = state.repoDiscussionsCategoryState.input3Label,
+                        onTextChange = { onAction(GithubListAction.OnRepoDiscussionsCategoryInput3Change(it)) }
                     )
                 }
             )

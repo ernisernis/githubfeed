@@ -54,6 +54,27 @@ class GithubListViewModel @Inject constructor(
                     )
                 ) }
             }
+            is GithubListAction.OnRepoDiscussionsCategoryInput1Change -> {
+                _state.update { it.copy(
+                    repoDiscussionsCategoryState = state.value.repoDiscussionsCategoryState.copy(
+                        input1 = action.text
+                    )
+                ) }
+            }
+            is GithubListAction.OnRepoDiscussionsCategoryInput2Change -> {
+                _state.update { it.copy(
+                    repoDiscussionsCategoryState = state.value.repoDiscussionsCategoryState.copy(
+                        input2 = action.text
+                    )
+                ) }
+            }
+            is GithubListAction.OnRepoDiscussionsCategoryInput3Change -> {
+                _state.update { it.copy(
+                    repoDiscussionsCategoryState = state.value.repoDiscussionsCategoryState.copy(
+                        input3 = action.text
+                    )
+                ) }
+            }
         }
     }
 

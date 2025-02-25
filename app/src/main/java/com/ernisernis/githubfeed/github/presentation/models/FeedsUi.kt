@@ -7,8 +7,8 @@ import com.ernisernis.githubfeed.github.domain.Links
 data class FeedsUi(
     val timelineUrl: String,
     val userUrl: String,
-    val repositoryDiscussionsUrl: String,
-    val repositoryDiscussionsCategoryUrl: String,
+    val repoDiscussionsUrl: String,
+    val repoDiscussionsCategoryUrl: String,
     val securityAdvisoriesUrl: String,
     val linksUi: LinksUi,
 )
@@ -30,8 +30,8 @@ fun Feeds.toFeedsUi(): FeedsUi {
     return FeedsUi(
         timelineUrl = timelineUrl,
         userUrl = userUrl,
-        repositoryDiscussionsUrl = repositoryDiscussionsUrl,
-        repositoryDiscussionsCategoryUrl = repositoryDiscussionsCategoryUrl,
+        repoDiscussionsUrl = repositoryDiscussionsUrl,
+        repoDiscussionsCategoryUrl = repositoryDiscussionsCategoryUrl,
         securityAdvisoriesUrl = securityAdvisoriesUrl,
         linksUi = links.toLinksUi(),
     )

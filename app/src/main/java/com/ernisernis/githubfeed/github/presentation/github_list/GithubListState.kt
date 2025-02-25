@@ -8,7 +8,7 @@ data class GithubListState(
     val timelineState: TimelineState = TimelineState(),
     val linkUserState: LinkUserState = LinkUserState(),
     val repoDiscussionsState: RepositoryDiscussionsState = RepositoryDiscussionsState(),
-    val repositoryDiscussionsCategoryState: RepositoryDiscussionsCategoryState = RepositoryDiscussionsCategoryState(),
+    val repoDiscussionsCategoryState: RepositoryDiscussionsCategoryState = RepositoryDiscussionsCategoryState(),
     val securityAdvisoriesState: SecurityAdvisoriesState = SecurityAdvisoriesState()
 )
 
@@ -33,8 +33,11 @@ data class RepositoryDiscussionsState(
 data class RepositoryDiscussionsCategoryState(
     val title: String = "Discussions Category",
     val input1: String = "",
+    val input1Label: String = "user",
     val input2: String = "",
+    val input2Label: String = "repo",
     val input3: String = "",
+    val input3Label: String = "category",
 )
 
 data class SecurityAdvisoriesState(
