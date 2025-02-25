@@ -121,6 +121,13 @@ fun GithubListScreen(
                     )
                 }
             )
+
+            // Security Advisories
+            FeedItem(
+                title = state.securityAdvisoriesState.title,
+                urlPathLink = state.feedsUi?.securityAdvisoriesUrl ?: "",
+                onClick = {},
+            )
         }
     }
 }
