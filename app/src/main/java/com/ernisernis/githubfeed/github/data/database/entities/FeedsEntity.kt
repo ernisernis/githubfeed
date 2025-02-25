@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class FeedsEntity(
-    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @PrimaryKey(autoGenerate = false) val id: Int = 0,
     val timelineUrl: String,
     val userUrl: String,
     val repositoryDiscussionsUrl: String,
