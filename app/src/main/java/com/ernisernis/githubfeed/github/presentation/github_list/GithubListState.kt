@@ -19,6 +19,7 @@ data class TimelineState(
 data class LinkUserState(
     val title: String = "User",
     val input: String = "",
+    val inputLabel: String = "user",
 )
 
 data class RepositoryDiscussionsState(

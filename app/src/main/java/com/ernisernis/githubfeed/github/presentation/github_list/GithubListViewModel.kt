@@ -33,7 +33,13 @@ class GithubListViewModel @Inject constructor(
 
     fun onAction(action: GithubListAction) {
         when (action) {
-            else -> Unit
+            is GithubListAction.OnLinkUserInputChange -> {
+                _state.update { it.copy(
+                    linkUserState = state.value.linkUserState.copy(
+                        input = action.text
+                    )
+                ) }
+            }
         }
     }
 

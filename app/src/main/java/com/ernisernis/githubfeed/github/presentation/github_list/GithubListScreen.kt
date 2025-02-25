@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.ernisernis.githubfeed.github.data.dto.FeedsDto
+import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedInputField
 import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedItem
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
 
@@ -58,12 +58,19 @@ fun GithubListScreen(
             FeedItem(
                 title = state.timelineState.title,
                 urlPathLink = state.feedsUi?.timelineUrl ?: "",
-                onClick = {}
+                onClick = {},
             )
             FeedItem(
                 title = state.linkUserState.title,
                 urlPathLink = state.feedsUi?.userUrl ?: "",
-                onClick = {}
+                onClick = {},
+                inputContent = {
+                    FeedInputField(
+                        inputText = state.linkUserState.input,
+                        labelText = state.linkUserState.inputLabel,
+                        onTextChange = { onAction(GithubListAction.OnLinkUserInputChange(it)) }
+                    )
+                }
             )
         }
     }

@@ -22,14 +22,15 @@ fun FeedItem(
     title: String,
     urlPathLink: String,
     onClick: () -> Unit,
+    inputContent: @Composable () -> Unit = {},
 ) {
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(16))
+            .clip(RoundedCornerShape(12))
             .background(MaterialTheme.colorScheme.secondary)
             .clickable { onClick() }
-            .padding(8.dp),
+            .padding(12.dp),
         verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         Text(
@@ -43,6 +44,8 @@ fun FeedItem(
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSecondary
         )
+
+        inputContent()
     }
 }
 
