@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
@@ -20,31 +19,29 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ernisernis.githubfeed.app.DetailParams
 import com.ernisernis.githubfeed.github.domain.FeedsType
+import com.ernisernis.githubfeed.github.presentation.components.GithubLoadingIndicator
 import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedInputField
 import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedItem
-import com.ernisernis.githubfeed.github.presentation.github_list.components.GithubListLoading
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
 
 
 @Composable
 fun GithubListScreenRoot(
     viewModel: GithubListViewModel = hiltViewModel(),
+    modifier: Modifier = Modifier,
     onClick: (DetailParams) -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     if (state.loading) {
-        GithubListLoading(
-            modifier = Modifier
-                .fillMaxSize()
+        GithubLoadingIndicator(
+            modifier = modifier,
+            color = MaterialTheme.colorScheme.onBackground,
         )
     } else {
         GithubListScreen(
             state = state,
-            modifier = Modifier
-                .statusBarsPadding()
-                .background(MaterialTheme.colorScheme.background)
-                .fillMaxSize(),
+            modifier = modifier,
             onAction = { action ->
                 when (action)  {
                     else -> Unit

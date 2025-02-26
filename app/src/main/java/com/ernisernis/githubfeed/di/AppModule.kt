@@ -12,11 +12,14 @@ import android.content.Context
 import androidx.room.Room
 import com.ernisernis.githubfeed.github.data.database.FeedsDao
 import com.ernisernis.githubfeed.github.data.database.GithubDatabase
+import com.prof18.rssparser.RssParser
+import com.prof18.rssparser.RssParserBuilder
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.okhttp.OkHttp
+import okhttp3.OkHttpClient
 import javax.inject.Singleton
 
 @Module
@@ -37,8 +40,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideKtorRemoteGithubDataSource(httpClient: HttpClient): RemoteGithubDataSource {
-        return KtorRemoteGithubDataSource(httpClient)
+    fun provideKtorRemoteGithubDataSource(httpClient: HttpClient, rssParser: RssParser): RemoteGithubDataSource {
+        return KtorRemoteGithubDataSource(httpClient, rssParser)
     }
 
     @Provides
@@ -65,4 +68,13 @@ object AppModule {
         ).build()
     }
 
+    @Provides
+    @Singleton
+    fun provideRssParser(): RssParser {
+        val builder = RssParserBuilder(
+            callFactory = OkHttpClient(),
+            charset = Charsets.UTF_8,
+        )
+        return builder.build()
+    }
 }

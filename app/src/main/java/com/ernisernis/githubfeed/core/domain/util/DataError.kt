@@ -8,6 +8,7 @@ sealed interface DataError: Error {
         SERVER_ERROR,
         SERIALIZATION,
         UNKNOWN,
+        RSS_PARSING,
     }
     enum class Local: DataError {
         DISK_FULL,

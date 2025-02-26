@@ -16,6 +16,7 @@ hilt = "2.55"
 hiltNavigationCompose = "1.2.0"
 room_version = "2.6.1"
 composeNavigationVersion = "2.8.7"
+rssParser = "6.0.9"
 
 
 [libraries]
@@ -54,6 +55,8 @@ androidx-room-ktx = { group = "androidx.room", name = "room-ktx", version.ref = 
 androidx-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room_version"}
 
 androidx-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "composeNavigationVersion" }
+
+prof18-rssparser = { group = "com.prof18.rssparser", name = "rssparser", version.ref = "rssParser" }
 
 
 

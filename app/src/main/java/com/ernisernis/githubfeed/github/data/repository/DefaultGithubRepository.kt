@@ -11,6 +11,7 @@ import com.ernisernis.githubfeed.github.data.mappers.toFeedsEntity
 import com.ernisernis.githubfeed.github.data.network.RemoteGithubDataSource
 import com.ernisernis.githubfeed.github.domain.Feeds
 import com.ernisernis.githubfeed.github.domain.GithubRepository
+import com.prof18.rssparser.model.RssChannel
 
 class DefaultGithubRepository(
     private val remoteGithubDataSource: RemoteGithubDataSource,
@@ -38,6 +39,14 @@ class DefaultGithubRepository(
                     // Forward error
                     Result.Error(error)
                 }
+            }
+    }
+
+    override suspend fun getFeedsDetail(url: String): Result<RssChannel, DataError.Remote> {
+        return remoteGithubDataSource
+            .getFeedsDetail(url)
+            .map { rssChannel ->
+                rssChannel
             }
     }
 }

@@ -83,6 +83,9 @@ dependencies {
     implementation(libs.bundles.room)
     ksp(libs.androidx.room.compiler)
     testImplementation(libs.androidx.room.testing)
+
+    // Rss parsing
+    implementation(libs.prof18.rssparser)
 }
 
 ksp {

@@ -1,6 +1,9 @@
 package com.ernisernis.githubfeed.app
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -36,6 +39,10 @@ fun App() {
 
                 GithubListScreenRoot(
                     viewModel = viewModel,
+                    modifier = Modifier
+                        .statusBarsPadding()
+                        .background(MaterialTheme.colorScheme.background)
+                        .fillMaxSize(),
                     onClick = { detailParams ->
                         navController.navigate(Route.GithubDetail(detailParams))
                     }
@@ -56,6 +63,10 @@ fun App() {
 
                 GithubDetailScreenRoot(
                     viewModel = viewModel,
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.tertiaryContainer)
+                        .systemBarsPadding()
+                        .fillMaxSize(),
                 )
             }
         }
