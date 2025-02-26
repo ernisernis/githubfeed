@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ernisernis.githubfeed.core.domain.util.onError
 import com.ernisernis.githubfeed.core.domain.util.onSuccess
+import com.ernisernis.githubfeed.github.domain.FeedsType
 import com.ernisernis.githubfeed.github.domain.GithubRepository
 import com.ernisernis.githubfeed.github.presentation.models.toFeedsUi
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -75,7 +76,22 @@ class GithubListViewModel @Inject constructor(
                     )
                 ) }
             }
-            else -> Unit
+
+            is GithubListAction.OnFeedsClick -> {
+                // TODO: Add validations before forwarding the user
+
+                when (action.type) {
+                    FeedsType.TIMELINE -> {
+                        _state.update { it.copy(
+                            urlLink = state.value.feedsUi?.linksUi?.timeLine?.href,
+                        ) }
+                    }
+                    FeedsType.USER -> TODO()
+                    FeedsType.REPO_DISCUSSIONS -> TODO()
+                    FeedsType.REPO_DISCUSSIONS_CATEGORY -> TODO()
+                    FeedsType.SECURITY_ADVISORIES -> TODO()
+                }
+            }
         }
     }
 
@@ -91,5 +107,11 @@ class GithubListViewModel @Inject constructor(
             .onError { error ->
                 // TODO: Handle error
             }
+    }
+
+    fun clearUrlLink() {
+        _state.update { it.copy(
+            urlLink = null
+        ) }
     }
 }

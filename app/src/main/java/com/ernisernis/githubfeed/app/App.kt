@@ -1,12 +1,14 @@
 package com.ernisernis.githubfeed.app
 
-import android.util.Log
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavOptions
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
@@ -35,22 +37,27 @@ fun App() {
 
                 GithubListScreenRoot(
                     viewModel = viewModel,
-                    onClick = {
-                        navController.navigate(Route.GithubDetail(DetailInput(param1 = "ABD")))
+                    onClick = { detailParams ->
+                        navController.navigate(Route.GithubDetail(detailParams))
                     }
                 )
             }
 
             composable<Route.GithubDetail>(
                 typeMap = mapOf(
-                    typeOf<DetailInput>() to GithubNavType.DetailInput
+                    typeOf<DetailParams>() to GithubNavType.DetailParams
                 )
             ) {
                 val arguments = it.toRoute<Route.GithubDetail>()
-                Log.d("ERNIS33", "App: ${arguments.detailInput.param1}")
-                Log.d("ERNIS33", "App: ${arguments.detailInput.param2}")
-                Log.d("ERNIS33", "App: ${arguments.detailInput.param3}")
-                Log.d("ERNIS33", "App: ${arguments.detailInput.param4}")
+                Box(
+                    modifier = Modifier
+                        .fillMaxSize(),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = arguments.detailParams.url
+                    )
+                }
             }
         }
     }

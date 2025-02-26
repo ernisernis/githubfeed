@@ -5,6 +5,7 @@ import com.ernisernis.githubfeed.github.presentation.models.FeedsUi
 data class GithubListState(
     val loading: Boolean = true,
     val feedsUi: FeedsUi? = null,
+    val urlLink: String? = null,
     val timelineState: TimelineState = TimelineState(),
     val linkUserState: LinkUserState = LinkUserState(),
     val repoDiscussionsState: RepositoryDiscussionsState = RepositoryDiscussionsState(),

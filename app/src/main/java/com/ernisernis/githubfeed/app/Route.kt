@@ -11,13 +11,10 @@ sealed interface Route {
     data object GithubList: Route
 
     @Serializable
-    data class GithubDetail(val detailInput: DetailInput): Route
+    data class GithubDetail(val detailParams: DetailParams): Route
 }
 
 @Serializable
-data class DetailInput(
-    val param1: String? = null,
-    val param2: String? = null,
-    val param3: String? = null,
-    val param4: String? = null,
+data class DetailParams(
+    val url: String,
 )

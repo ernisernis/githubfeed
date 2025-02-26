@@ -8,22 +8,22 @@ import kotlinx.serialization.json.Json
 
 object GithubNavType {
 
-    val DetailInput = object : NavType<DetailInput>(
+    val DetailParams = object : NavType<DetailParams>(
         isNullableAllowed = false
     ) {
-        override fun get(bundle: Bundle, key: String): DetailInput? {
+        override fun get(bundle: Bundle, key: String): DetailParams? {
             return Json.decodeFromString(bundle.getString(key) ?: return null)
         }
 
-        override fun parseValue(value: String): DetailInput {
+        override fun parseValue(value: String): DetailParams {
             return Json.decodeFromString(Uri.decode(value))
         }
 
-        override fun serializeAsValue(value: DetailInput): String {
+        override fun serializeAsValue(value: DetailParams): String {
             return Uri.encode(Json.encodeToString(value))
         }
 
-        override fun put(bundle: Bundle, key: String, value: DetailInput) {
+        override fun put(bundle: Bundle, key: String, value: DetailParams) {
             bundle.putString(key, Json.encodeToString(value))
         }
     }
