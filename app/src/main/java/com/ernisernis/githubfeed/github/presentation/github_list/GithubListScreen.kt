@@ -26,6 +26,7 @@ import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
 @Composable
 fun GithubListScreenRoot(
     viewModel: GithubListViewModel = hiltViewModel(),
+    onClick: () -> Unit,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
@@ -43,6 +44,7 @@ fun GithubListScreenRoot(
                 .fillMaxSize(),
             onAction = { action ->
                 when (action)  {
+                    is GithubListAction.OnClick -> { onClick() }
                     else -> Unit
                 }
                 viewModel.onAction(action)
@@ -78,7 +80,7 @@ fun GithubListScreen(
             FeedItem(
                 title = state.linkUserState.title,
                 urlPathLink = state.feedsUi?.userUrl ?: "",
-                onClick = {},
+                onClick = { onAction(GithubListAction.OnClick) },
                 inputContent = {
                     FeedInputField(
                         inputText = state.linkUserState.input,

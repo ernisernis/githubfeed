@@ -7,4 +7,5 @@ sealed interface GithubListAction {
     data class OnRepoDiscussionsCategoryInput1Change(val text: String): GithubListAction
     data class OnRepoDiscussionsCategoryInput2Change(val text: String): GithubListAction
     data class OnRepoDiscussionsCategoryInput3Change(val text: String): GithubListAction
+    data object OnClick: GithubListAction
 }

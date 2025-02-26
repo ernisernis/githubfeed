@@ -75,6 +75,7 @@ class GithubListViewModel @Inject constructor(
                     )
                 ) }
             }
+            else -> Unit
         }
     }
 
