@@ -17,7 +17,6 @@ class DefaultGithubRepository(
     private val feedsDao: FeedsDao,
 ): GithubRepository {
     override suspend fun getFeeds(): Result<Feeds, DataError.Remote> {
-
         return remoteGithubDataSource
             .getFeeds()
             .map { dto ->

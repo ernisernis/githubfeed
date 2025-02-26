@@ -5,7 +5,6 @@ import androidx.lifecycle.viewModelScope
 import com.ernisernis.githubfeed.core.domain.util.onError
 import com.ernisernis.githubfeed.core.domain.util.onSuccess
 import com.ernisernis.githubfeed.core.presentation.formatUrlWithReplacements
-import com.ernisernis.githubfeed.core.presentation.formatUserUrlLink
 import com.ernisernis.githubfeed.github.domain.FeedsType
 import com.ernisernis.githubfeed.github.domain.GithubRepository
 import com.ernisernis.githubfeed.github.presentation.models.toFeedsUi
@@ -106,7 +105,6 @@ class GithubListViewModel @Inject constructor(
                                 )
                             )
                         }
-
                     }
                     FeedsType.REPO_DISCUSSIONS_CATEGORY -> {
                         _state.update {
