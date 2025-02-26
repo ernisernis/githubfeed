@@ -49,6 +49,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideFeedsDao(database: GithubDatabase): FeedsDao {
+        return database.feedsDao
+    }
+
+    @Provides
+    @Singleton
     fun provideGithubDatabase(
         @ApplicationContext context: Context
     ): GithubDatabase {
@@ -59,9 +65,4 @@ object AppModule {
         ).build()
     }
 
-    @Provides
-    @Singleton
-    fun provideFeedsDao(database: GithubDatabase): FeedsDao {
-        return database.feedsDao
-    }
 }

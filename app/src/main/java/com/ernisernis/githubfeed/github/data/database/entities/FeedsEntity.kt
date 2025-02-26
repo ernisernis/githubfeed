@@ -2,6 +2,7 @@ package com.ernisernis.githubfeed.github.data.database.entities
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.ernisernis.githubfeed.github.data.dto.LinksDto
 
 @Entity
 data class FeedsEntity(
@@ -11,20 +12,5 @@ data class FeedsEntity(
     val repositoryDiscussionsUrl: String,
     val repositoryDiscussionsCategoryUrl: String,
     val securityAdvisoriesUrl: String,
-    val links: LinksEntity,
-)
-
-@Entity
-data class LinksEntity(
-    val timeLine: LinkEntity,
-    val user: LinkEntity,
-    val repositoryDiscussions: LinkEntity,
-    val repositoryDiscussionsCategory: LinkEntity,
-    val securityAdvisories: LinkEntity
-)
-
-@Entity
-data class LinkEntity(
-    val href: String,
-    val type: String,
+    val linksDto: LinksDto,
 )
