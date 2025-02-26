@@ -4,6 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ernisernis.githubfeed.core.domain.util.onError
 import com.ernisernis.githubfeed.core.domain.util.onSuccess
+import com.ernisernis.githubfeed.core.presentation.formatUrlWithReplacements
+import com.ernisernis.githubfeed.core.presentation.formatUserUrlLink
 import com.ernisernis.githubfeed.github.domain.FeedsType
 import com.ernisernis.githubfeed.github.domain.GithubRepository
 import com.ernisernis.githubfeed.github.presentation.models.toFeedsUi
@@ -86,10 +88,45 @@ class GithubListViewModel @Inject constructor(
                             urlLink = state.value.feedsUi?.linksUi?.timeLine?.href,
                         ) }
                     }
-                    FeedsType.USER -> TODO()
-                    FeedsType.REPO_DISCUSSIONS -> TODO()
-                    FeedsType.REPO_DISCUSSIONS_CATEGORY -> TODO()
-                    FeedsType.SECURITY_ADVISORIES -> TODO()
+                    FeedsType.USER -> {
+                        _state.update { it.copy(
+                            urlLink = formatUrlWithReplacements(
+                                url = state.value.feedsUi?.linksUi?.user?.href,
+                                state.value.linkUserState.input
+                            )
+                        ) }
+                    }
+                    FeedsType.REPO_DISCUSSIONS -> {
+                        _state.update {
+                            it.copy(
+                                urlLink = formatUrlWithReplacements(
+                                    url = state.value.feedsUi?.linksUi?.repositoryDiscussions?.href,
+                                    state.value.repoDiscussionsState.input1,
+                                    state.value.repoDiscussionsState.input2,
+                                )
+                            )
+                        }
+
+                    }
+                    FeedsType.REPO_DISCUSSIONS_CATEGORY -> {
+                        _state.update {
+                            it.copy(
+                                urlLink = formatUrlWithReplacements(
+                                    url = state.value.feedsUi?.linksUi?.repositoryDiscussionsCategory?.href,
+                                    state.value.repoDiscussionsCategoryState.input1,
+                                    state.value.repoDiscussionsCategoryState.input2,
+                                    state.value.repoDiscussionsCategoryState.input3,
+                                )
+                            )
+                        }
+                    }
+                    FeedsType.SECURITY_ADVISORIES -> {
+                        _state.update {
+                            it.copy(
+                                urlLink = state.value.feedsUi?.linksUi?.securityAdvisories?.href
+                            )
+                        }
+                    }
                 }
             }
         }
