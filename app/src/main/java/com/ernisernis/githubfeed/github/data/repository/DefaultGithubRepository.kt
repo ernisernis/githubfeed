@@ -24,13 +24,21 @@ class DefaultGithubRepository(
                 dto.toFeeds()
             }
             .onSuccess { feeds ->
+                // Save result to local db
                 feedsDao.upsertFeedsEntity(feeds.toFeedsEntity())
                 Result.Success(feeds)
             }
             .onError { error ->
-                // TODO: Check if feedsDao entity exists and return, if not, return error given
-//                val localResult = feedsDao.getFeedsEntity()
-                Result.Error(error)
+                // Check if feeds is available in local db
+                val localResult = feedsDao.getFeedsEntity()
+
+                return if (localResult != null) {
+                    // Return cached result
+                    Result.Success(localResult.toFeeds())
+                } else {
+                    // Forward error
+                    Result.Error(error)
+                }
             }
     }
 }

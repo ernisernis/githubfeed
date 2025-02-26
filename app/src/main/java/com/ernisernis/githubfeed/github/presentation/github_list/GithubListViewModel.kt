@@ -1,8 +1,8 @@
 package com.ernisernis.githubfeed.github.presentation.github_list
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.ernisernis.githubfeed.core.domain.util.onError
 import com.ernisernis.githubfeed.core.domain.util.onSuccess
 import com.ernisernis.githubfeed.github.domain.GithubRepository
 import com.ernisernis.githubfeed.github.presentation.models.toFeedsUi
@@ -87,8 +87,8 @@ class GithubListViewModel @Inject constructor(
                     feedsUi = feeds.toFeedsUi()
                 ) }
             }
-            .onSuccess { error ->
-                Log.d("ERNIS33", ": $error")
+            .onError { error ->
+                // TODO: Handle error
             }
     }
 }

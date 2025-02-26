@@ -64,3 +64,14 @@ fun Link.toLinkDto(): LinkDto {
         type = type
     )
 }
+
+fun FeedsEntity.toFeeds(): Feeds {
+    return Feeds(
+        timelineUrl = timelineUrl,
+        userUrl = userUrl,
+        repositoryDiscussionsUrl = repositoryDiscussionsUrl,
+        repositoryDiscussionsCategoryUrl = repositoryDiscussionsCategoryUrl,
+        securityAdvisoriesUrl = securityAdvisoriesUrl,
+        links = linksDto.toLinks()
+    )
+}
