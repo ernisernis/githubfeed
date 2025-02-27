@@ -85,23 +85,12 @@ class GithubListViewModel @Inject constructor(
             }
 
             is GithubListAction.OnFeedsClick -> {
-                // TODO: Add validations before forwarding the user
-
                 when (action.type) {
                     FeedsType.TIMELINE -> handleTimelineClick()
                     FeedsType.USER -> handleUserClick()
                     FeedsType.REPO_DISCUSSIONS -> handleRepoDiscussionsClick()
                     FeedsType.REPO_DISCUSSIONS_CATEGORY -> handleRepoDiscussionsCategoryClick()
-
-
-                    FeedsType.SECURITY_ADVISORIES -> {
-                        _state.update {
-                            it.copy(
-                                urlLink = state.value.securityAdvisoriesState.href,
-                                feedsType = FeedsType.SECURITY_ADVISORIES
-                            )
-                        }
-                    }
+                    FeedsType.SECURITY_ADVISORIES -> handleSecurityAdvisories()
                 }
             }
         }
@@ -199,6 +188,15 @@ class GithubListViewModel @Inject constructor(
                     feedsType = FeedsType.REPO_DISCUSSIONS_CATEGORY,
                 )
             }
+        }
+    }
+
+    private fun handleSecurityAdvisories() {
+        _state.update {
+            it.copy(
+                urlLink = state.value.securityAdvisoriesState.href,
+                feedsType = FeedsType.SECURITY_ADVISORIES
+            )
         }
     }
 
