@@ -1,12 +1,15 @@
 package com.ernisernis.githubfeed.github.presentation.github_list.components
 
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
 
@@ -17,6 +20,7 @@ fun FeedInputField(
     inputText: String,
     labelText: String,
     onTextChange: (String) -> Unit,
+    onDoneAction: () -> Unit = {},
 ) {
     OutlinedTextField(
         value = inputText,
@@ -39,7 +43,15 @@ fun FeedInputField(
                 text = labelText,
                 color = MaterialTheme.colorScheme.onSecondary,
             )
-        }
+        },
+        keyboardOptions = KeyboardOptions(
+            imeAction = ImeAction.Done
+        ),
+        keyboardActions = KeyboardActions(
+            onDone = {
+                onDoneAction()
+            }
+        )
     )
 }
 

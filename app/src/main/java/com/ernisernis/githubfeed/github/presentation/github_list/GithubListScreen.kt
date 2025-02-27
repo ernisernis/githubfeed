@@ -16,7 +16,6 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.ernisernis.githubfeed.R
 import com.ernisernis.githubfeed.app.DetailParams
 import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.ernisernis.githubfeed.github.domain.FeedsType
@@ -100,6 +99,9 @@ fun GithubListScreen(
                         labelText = stringResource(state.linkUserState.inputLabel),
                         onTextChange = {
                             onAction(GithubListAction.OnLinkUserInputChange(it))
+                        },
+                        onDoneAction = {
+                            onAction(GithubListAction.OnFeedsClick(FeedsType.USER))
                         }
                     )
                 }
@@ -127,6 +129,9 @@ fun GithubListScreen(
                         labelText = stringResource(state.repoDiscussionsState.input2Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsInput2Change(it))
+                        },
+                        onDoneAction = {
+                            onAction(GithubListAction.OnFeedsClick(FeedsType.REPO_DISCUSSIONS))
                         }
                     )
                 }
@@ -161,6 +166,9 @@ fun GithubListScreen(
                         labelText = stringResource(state.repoDiscussionsCategoryState.input3Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsCategoryInput3Change(it))
+                        },
+                        onDoneAction = {
+                            onAction(GithubListAction.OnFeedsClick(FeedsType.REPO_DISCUSSIONS_CATEGORY))
                         }
                     )
                 }
