@@ -1,4 +1,4 @@
-package com.ernisernis.githubfeed.core.presentation
+package com.ernisernis.githubfeed.core.presentation.util
 
 
 fun String.validateContentType(): String? {
