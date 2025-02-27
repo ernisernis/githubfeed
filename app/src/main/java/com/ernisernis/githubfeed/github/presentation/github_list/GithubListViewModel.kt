@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.ernisernis.githubfeed.core.domain.util.onError
 import com.ernisernis.githubfeed.core.domain.util.onSuccess
 import com.ernisernis.githubfeed.core.presentation.util.formatUrlWithReplacements
+import com.ernisernis.githubfeed.core.presentation.util.toStringRes
 import com.ernisernis.githubfeed.core.presentation.util.validateContentType
 import com.ernisernis.githubfeed.github.domain.FeedsType
 import com.ernisernis.githubfeed.github.domain.GithubRepository
@@ -244,7 +245,12 @@ class GithubListViewModel @Inject constructor(
                 ) }
             }
             .onError { error ->
-                // TODO: Handle error
+                _state.update {
+                    it.copy(
+                        loading = false,
+                        errorMessage = error.toStringRes(),
+                    )
+                }
             }
     }
 

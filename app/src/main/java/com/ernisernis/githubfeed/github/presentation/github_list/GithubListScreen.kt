@@ -19,6 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.ernisernis.githubfeed.app.DetailParams
 import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.ernisernis.githubfeed.github.domain.FeedsType
+import com.ernisernis.githubfeed.github.presentation.components.GithubErrorScreen
 import com.ernisernis.githubfeed.github.presentation.components.GithubLoadingIndicator
 import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedInputField
 import com.ernisernis.githubfeed.github.presentation.github_list.components.FeedItem
@@ -37,6 +38,11 @@ fun GithubListScreenRoot(
         GithubLoadingIndicator(
             modifier = modifier,
             color = MaterialTheme.colorScheme.onBackground,
+        )
+    } else if (state.errorMessage != null) {
+        GithubErrorScreen(
+            modifier = modifier,
+            errorMessage = state.errorMessage
         )
     } else {
         GithubListScreen(

@@ -10,6 +10,7 @@ data class GithubListState(
     val loading: Boolean = true,
     val urlLink: String? = null,
     val feedsType: FeedsType = FeedsType.TIMELINE,
+    @StringRes val errorMessage: Int? = null,
     val timelineState: TimelineState = TimelineState(),
     val linkUserState: LinkUserState = LinkUserState(),
     val repoDiscussionsState: RepositoryDiscussionsState = RepositoryDiscussionsState(),
