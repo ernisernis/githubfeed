@@ -27,7 +27,7 @@ fun FeedItem(
     Column(
         modifier = modifier
             .fillMaxWidth()
-            .clip(RoundedCornerShape(12))
+            .clip(RoundedCornerShape(4))
             .background(MaterialTheme.colorScheme.secondary)
             .clickable { onClick() }
             .padding(Dimens.GithubListItemPadding),
