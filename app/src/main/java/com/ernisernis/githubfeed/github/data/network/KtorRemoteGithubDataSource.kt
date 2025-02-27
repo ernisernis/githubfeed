@@ -13,6 +13,7 @@ import io.ktor.client.HttpClient
 import io.ktor.client.request.get
 import io.ktor.http.ContentType.Application.Atom
 import io.ktor.http.contentType
+import io.ktor.util.network.UnresolvedAddressException
 
 class KtorRemoteGithubDataSource(
     private val httpClient: HttpClient,
@@ -34,6 +35,8 @@ class KtorRemoteGithubDataSource(
             return Result.Success(rssChannel)
         } catch (e: RssParsingException) {
            Result.Error(DataError.Remote.RSS_PARSING)
+        } catch (e: Exception) {
+            Result.Error(DataError.Remote.UNKNOWN)
         }
     }
 
