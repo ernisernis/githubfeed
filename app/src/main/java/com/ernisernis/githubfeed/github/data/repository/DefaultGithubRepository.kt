@@ -30,7 +30,7 @@ class DefaultGithubRepository(
                 Result.Success(feeds)
             }
             .onError { error ->
-                // Check if feeds is available in local db
+                // Check if feeds object is available in local db
                 val localResult = feedsDao.getFeedsEntity()
 
                 return if (localResult != null) {

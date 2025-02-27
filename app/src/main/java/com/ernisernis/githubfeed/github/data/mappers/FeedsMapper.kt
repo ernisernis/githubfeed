@@ -16,17 +16,17 @@ fun FeedsDto.toFeeds(): Feeds {
         repositoryDiscussionsUrl = repositoryDiscussionsUrl,
         repositoryDiscussionsCategoryUrl = repositoryDiscussionsCategoryUrl,
         securityAdvisoriesUrl = securityAdvisoriesUrl,
-        links = links.toLinks()
+        links = links?.toLinks()
     )
 }
 
 fun LinksDto.toLinks(): Links {
     return Links(
-        timeLine = timeline.toLink(),
-        user = user.toLink(),
-        repositoryDiscussions = repositoryDiscussions.toLink(),
-        repositoryDiscussionsCategory = repositoryDiscussionsCategory.toLink(),
-        securityAdvisories = securityAdvisories.toLink()
+        timeLine = timeline?.toLink(),
+        user = user?.toLink(),
+        repositoryDiscussions = repositoryDiscussions?.toLink(),
+        repositoryDiscussionsCategory = repositoryDiscussionsCategory?.toLink(),
+        securityAdvisories = securityAdvisories?.toLink()
     )
 }
 
@@ -44,17 +44,17 @@ fun Feeds.toFeedsEntity(): FeedsEntity {
         repositoryDiscussionsUrl = repositoryDiscussionsUrl,
         repositoryDiscussionsCategoryUrl = repositoryDiscussionsCategoryUrl,
         securityAdvisoriesUrl = securityAdvisoriesUrl,
-        linksDto = links.toLinksDto()
+        linksDto = links?.toLinksDto()
     )
 }
 
 fun Links.toLinksDto(): LinksDto {
     return LinksDto(
-        timeline = timeLine.toLinkDto(),
-        user = user.toLinkDto(),
-        repositoryDiscussions = repositoryDiscussions.toLinkDto(),
-        repositoryDiscussionsCategory = repositoryDiscussionsCategory.toLinkDto(),
-        securityAdvisories = securityAdvisories.toLinkDto()
+        timeline = timeLine?.toLinkDto(),
+        user = user?.toLinkDto(),
+        repositoryDiscussions = repositoryDiscussions?.toLinkDto(),
+        repositoryDiscussionsCategory = repositoryDiscussionsCategory?.toLinkDto(),
+        securityAdvisories = securityAdvisories?.toLinkDto()
     )
 }
 
@@ -72,6 +72,6 @@ fun FeedsEntity.toFeeds(): Feeds {
         repositoryDiscussionsUrl = repositoryDiscussionsUrl,
         repositoryDiscussionsCategoryUrl = repositoryDiscussionsCategoryUrl,
         securityAdvisoriesUrl = securityAdvisoriesUrl,
-        links = linksDto.toLinks()
+        links = linksDto?.toLinks()
     )
 }

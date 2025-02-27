@@ -1,6 +1,5 @@
 package com.ernisernis.githubfeed.github.presentation.github_list
 
-import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -68,28 +67,28 @@ fun GithubListScreen(
     modifier: Modifier = Modifier,
     onAction: (GithubListAction) -> Unit,
 ) {
-    AnimatedVisibility(
-        visible = state.feedsUi != null
+    Column(
+        modifier = modifier
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        Column(
-            modifier = modifier
-                .verticalScroll(rememberScrollState())
-                .padding(16.dp),
-            verticalArrangement = Arrangement.spacedBy(16.dp)
-        ) {
-            // Timeline
+        // Timeline
+        if (state.timelineState.showSection) {
             FeedItem(
                 title = state.timelineState.title,
-                urlPathLink = state.feedsUi?.timelineUrl ?: "",
+                urlPathLink = state.timelineState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.TIMELINE))
                 },
             )
+        }
 
-            // User
+        // User
+        if (state.linkUserState.showSection) {
             FeedItem(
                 title = state.linkUserState.title,
-                urlPathLink = state.feedsUi?.userUrl ?: "",
+                urlPathLink = state.linkUserState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.USER))
                 },
@@ -103,11 +102,13 @@ fun GithubListScreen(
                     )
                 }
             )
+        }
 
-            // Discussions
+        // Discussions
+        if (state.repoDiscussionsState.showSection) {
             FeedItem(
                 title = state.repoDiscussionsState.title,
-                urlPathLink = state.feedsUi?.repoDiscussionsUrl ?: "",
+                urlPathLink = state.repoDiscussionsState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.REPO_DISCUSSIONS))
                 },
@@ -128,11 +129,13 @@ fun GithubListScreen(
                     )
                 }
             )
+        }
 
-            // Discussions Category
+        // Discussions Category
+        if (state.repoDiscussionsCategoryState.showSection) {
             FeedItem(
                 title = state.repoDiscussionsCategoryState.title,
-                urlPathLink = state.feedsUi?.repoDiscussionsCategoryUrl ?: "",
+                urlPathLink = state.repoDiscussionsCategoryState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.REPO_DISCUSSIONS_CATEGORY))
                 },
@@ -160,11 +163,13 @@ fun GithubListScreen(
                     )
                 }
             )
+        }
 
-            // Security Advisories
+        // Security Advisories
+        if (state.securityAdvisoriesState.showSection) {
             FeedItem(
                 title = state.securityAdvisoriesState.title,
-                urlPathLink = state.feedsUi?.securityAdvisoriesUrl ?: "",
+                urlPathLink = state.securityAdvisoriesState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.SECURITY_ADVISORIES))
                 },
@@ -176,10 +181,9 @@ fun GithubListScreen(
 @Preview
 @Composable
 fun GithubListScreenPreview() {
-    val state = GithubListState()
     GithubFeedTheme {
         GithubListScreen(
-            state = state,
+            state = GithubListState(),
             modifier = Modifier
                 .background(MaterialTheme.colorScheme.background)
                 .fillMaxSize(),

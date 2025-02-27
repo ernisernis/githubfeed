@@ -5,9 +5,9 @@ import androidx.lifecycle.viewModelScope
 import com.ernisernis.githubfeed.core.domain.util.onError
 import com.ernisernis.githubfeed.core.domain.util.onSuccess
 import com.ernisernis.githubfeed.core.presentation.formatUrlWithReplacements
+import com.ernisernis.githubfeed.core.presentation.validateContentType
 import com.ernisernis.githubfeed.github.domain.FeedsType
 import com.ernisernis.githubfeed.github.domain.GithubRepository
-import com.ernisernis.githubfeed.github.presentation.models.toFeedsUi
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
@@ -84,14 +84,14 @@ class GithubListViewModel @Inject constructor(
                 when (action.type) {
                     FeedsType.TIMELINE -> {
                         _state.update { it.copy(
-                            urlLink = state.value.feedsUi?.linksUi?.timeLine?.href,
+                            urlLink = state.value.timelineState.href,
                             feedsType = FeedsType.TIMELINE,
                         ) }
                     }
                     FeedsType.USER -> {
                         _state.update { it.copy(
                             urlLink = formatUrlWithReplacements(
-                                url = state.value.feedsUi?.linksUi?.user?.href,
+                                url = state.value.linkUserState.href,
                                 state.value.linkUserState.input
                             ),
                             feedsType = FeedsType.USER,
@@ -101,7 +101,7 @@ class GithubListViewModel @Inject constructor(
                         _state.update {
                             it.copy(
                                 urlLink = formatUrlWithReplacements(
-                                    url = state.value.feedsUi?.linksUi?.repositoryDiscussions?.href,
+                                    url = state.value.repoDiscussionsState.href,
                                     state.value.repoDiscussionsState.input1,
                                     state.value.repoDiscussionsState.input2,
                                 ),
@@ -113,7 +113,7 @@ class GithubListViewModel @Inject constructor(
                         _state.update {
                             it.copy(
                                 urlLink = formatUrlWithReplacements(
-                                    url = state.value.feedsUi?.linksUi?.repositoryDiscussionsCategory?.href,
+                                    url = state.value.repoDiscussionsCategoryState.href,
                                     state.value.repoDiscussionsCategoryState.input1,
                                     state.value.repoDiscussionsCategoryState.input2,
                                     state.value.repoDiscussionsCategoryState.input3,
@@ -125,7 +125,7 @@ class GithubListViewModel @Inject constructor(
                     FeedsType.SECURITY_ADVISORIES -> {
                         _state.update {
                             it.copy(
-                                urlLink = state.value.feedsUi?.linksUi?.securityAdvisories?.href,
+                                urlLink = state.value.securityAdvisoriesState.href,
                                 feedsType = FeedsType.SECURITY_ADVISORIES
                             )
                         }
@@ -139,9 +139,43 @@ class GithubListViewModel @Inject constructor(
         githubRepository
             .getFeeds()
             .onSuccess { feeds ->
+                val timelineState = TimelineState(
+                    href = feeds.links?.timeLine?.href,
+                    type = feeds.links?.timeLine?.type,
+                    showSection = feeds.links?.timeLine?.href != null && feeds.links.timeLine.type?.validateContentType() != null
+                )
+
+                val linkUserState = LinkUserState(
+                    href = feeds.links?.user?.href,
+                    type = feeds.links?.user?.type,
+                    showSection = feeds.links?.user?.href != null && feeds.links.user.type?.validateContentType() != null
+                )
+
+                val repoDiscussionsState = RepositoryDiscussionsState(
+                    href = feeds.links?.repositoryDiscussions?.href,
+                    type = feeds.links?.repositoryDiscussions?.type,
+                    showSection = feeds.links?.repositoryDiscussions?.href != null && feeds.links.repositoryDiscussions.type?.validateContentType() != null
+                )
+
+                val repoDiscussionsCategoryState = RepositoryDiscussionsCategoryState(
+                    href = feeds.links?.repositoryDiscussionsCategory?.href,
+                    type = feeds.links?.repositoryDiscussionsCategory?.type,
+                    showSection = feeds.links?.repositoryDiscussionsCategory?.href != null && feeds.links.repositoryDiscussionsCategory.type?.validateContentType() != null
+                )
+
+                val securityAdvisoriesState = SecurityAdvisoriesState(
+                    href = feeds.links?.securityAdvisories?.href,
+                    type = feeds.links?.securityAdvisories?.type,
+                    showSection = feeds.links?.securityAdvisories?.href != null && feeds.links.securityAdvisories.type?.validateContentType() != null
+                )
+
                 _state.update { it.copy(
                     loading = false,
-                    feedsUi = feeds.toFeedsUi()
+                    timelineState = timelineState,
+                    linkUserState = linkUserState,
+                    repoDiscussionsState = repoDiscussionsState,
+                    repoDiscussionsCategoryState = repoDiscussionsCategoryState,
+                    securityAdvisoriesState = securityAdvisoriesState,
                 ) }
             }
             .onError { error ->

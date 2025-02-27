@@ -20,7 +20,7 @@ import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
 fun FeedItem(
     modifier: Modifier = Modifier,
     title: String,
-    urlPathLink: String,
+    urlPathLink: String?,
     onClick: () -> Unit,
     inputContent: @Composable () -> Unit = {},
 ) {
@@ -40,7 +40,7 @@ fun FeedItem(
         )
 
         Text(
-            text = urlPathLink,
+            text = urlPathLink ?: "",
             style = MaterialTheme.typography.titleMedium,
             color = MaterialTheme.colorScheme.onSecondary
         )
