@@ -19,6 +19,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import coil3.compose.AsyncImage
 import com.ernisernis.githubfeed.R
 import com.ernisernis.githubfeed.core.presentation.util.Dimens
+import com.ernisernis.githubfeed.core.presentation.util.getFormattedDateTime
 import com.prof18.rssparser.model.RssItem
 
 @Composable
@@ -47,7 +48,7 @@ fun RssListItem(
             }
             item.pubDate?.let {
                 Text(
-                    text = stringResource(R.string.at_pub_date, it),
+                    text = stringResource(R.string.at_pub_date, it.getFormattedDateTime()),
                     color = MaterialTheme.colorScheme.onTertiary,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,

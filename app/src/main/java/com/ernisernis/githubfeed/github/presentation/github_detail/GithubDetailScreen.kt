@@ -19,6 +19,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
 import com.ernisernis.githubfeed.R
 import com.ernisernis.githubfeed.core.presentation.util.Dimens
+import com.ernisernis.githubfeed.core.presentation.util.getFormattedDateTime
 import com.ernisernis.githubfeed.github.presentation.components.GithubLoadingIndicator
 import com.ernisernis.githubfeed.github.presentation.github_detail.components.RssListItem
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
@@ -106,7 +107,7 @@ fun GithubDetailScreen(
         state.rssChannel?.lastBuildDate?.let {
             item {
                 Text(
-                    text = stringResource(R.string.last_build_date, it),
+                    text = stringResource(R.string.last_build_date, it.getFormattedDateTime()),
                     modifier = Modifier
                         .animateItem(),
                     style = MaterialTheme.typography.bodyMedium,
