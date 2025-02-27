@@ -85,6 +85,7 @@ class GithubListViewModel @Inject constructor(
                     FeedsType.TIMELINE -> {
                         _state.update { it.copy(
                             urlLink = state.value.feedsUi?.linksUi?.timeLine?.href,
+                            feedsType = FeedsType.TIMELINE,
                         ) }
                     }
                     FeedsType.USER -> {
@@ -92,7 +93,8 @@ class GithubListViewModel @Inject constructor(
                             urlLink = formatUrlWithReplacements(
                                 url = state.value.feedsUi?.linksUi?.user?.href,
                                 state.value.linkUserState.input
-                            )
+                            ),
+                            feedsType = FeedsType.USER,
                         ) }
                     }
                     FeedsType.REPO_DISCUSSIONS -> {
@@ -102,7 +104,8 @@ class GithubListViewModel @Inject constructor(
                                     url = state.value.feedsUi?.linksUi?.repositoryDiscussions?.href,
                                     state.value.repoDiscussionsState.input1,
                                     state.value.repoDiscussionsState.input2,
-                                )
+                                ),
+                                feedsType = FeedsType.REPO_DISCUSSIONS,
                             )
                         }
                     }
@@ -114,14 +117,16 @@ class GithubListViewModel @Inject constructor(
                                     state.value.repoDiscussionsCategoryState.input1,
                                     state.value.repoDiscussionsCategoryState.input2,
                                     state.value.repoDiscussionsCategoryState.input3,
-                                )
+                                ),
+                                feedsType = FeedsType.REPO_DISCUSSIONS_CATEGORY,
                             )
                         }
                     }
                     FeedsType.SECURITY_ADVISORIES -> {
                         _state.update {
                             it.copy(
-                                urlLink = state.value.feedsUi?.linksUi?.securityAdvisories?.href
+                                urlLink = state.value.feedsUi?.linksUi?.securityAdvisories?.href,
+                                feedsType = FeedsType.SECURITY_ADVISORIES
                             )
                         }
                     }

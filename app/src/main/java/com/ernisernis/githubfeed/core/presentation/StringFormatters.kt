@@ -16,6 +16,8 @@ package com.ernisernis.githubfeed.core.presentation
 
         - url = "https://github.com/{user}/{repo}/categories/{category}", replacement = "test", "abc1", "book"
             - output: "https://github.com/test/abc1/cateogories/book"
+
+    Also, we add ".atom" to the end of the url so we can fetch Atom contentType out of it
  */
 fun formatUrlWithReplacements(
     url: String?,
@@ -25,7 +27,7 @@ fun formatUrlWithReplacements(
     if (replacements.isEmpty()) return url
 
     val pattern = Regex("\\{[^}]*\\}")
-    var result = url
+    var result = "${url}.atom"
     var offset = 0
 
     pattern.findAll(url).forEachIndexed { index, matchResult ->

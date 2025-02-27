@@ -1,11 +1,13 @@
 package com.ernisernis.githubfeed.github.presentation.github_list
 
+import com.ernisernis.githubfeed.github.domain.FeedsType
 import com.ernisernis.githubfeed.github.presentation.models.FeedsUi
 
 data class GithubListState(
     val loading: Boolean = true,
     val feedsUi: FeedsUi? = null,
     val urlLink: String? = null,
+    val feedsType: FeedsType = FeedsType.TIMELINE,
     val timelineState: TimelineState = TimelineState(),
     val linkUserState: LinkUserState = LinkUserState(),
     val repoDiscussionsState: RepositoryDiscussionsState = RepositoryDiscussionsState(),

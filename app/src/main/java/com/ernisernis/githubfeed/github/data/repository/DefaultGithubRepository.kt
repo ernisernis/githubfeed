@@ -10,6 +10,7 @@ import com.ernisernis.githubfeed.github.data.mappers.toFeeds
 import com.ernisernis.githubfeed.github.data.mappers.toFeedsEntity
 import com.ernisernis.githubfeed.github.data.network.RemoteGithubDataSource
 import com.ernisernis.githubfeed.github.domain.Feeds
+import com.ernisernis.githubfeed.github.domain.FeedsType
 import com.ernisernis.githubfeed.github.domain.GithubRepository
 import com.prof18.rssparser.model.RssChannel
 
@@ -42,11 +43,22 @@ class DefaultGithubRepository(
             }
     }
 
-    override suspend fun getFeedsDetail(url: String): Result<RssChannel, DataError.Remote> {
-        return remoteGithubDataSource
-            .getFeedsDetail(url)
-            .map { rssChannel ->
-                rssChannel
+    override suspend fun getFeedsDetail(url: String, feedsType: FeedsType): Result<RssChannel, DataError.Remote> {
+        return when (feedsType) {
+            FeedsType.TIMELINE, FeedsType.SECURITY_ADVISORIES -> {
+                remoteGithubDataSource
+                    .getFeedsDetailFromRawUrl(url)
+                    .map { rssChannel ->
+                        rssChannel
+                    }
             }
+            else -> {
+                remoteGithubDataSource
+                    .getFeedsDetail(url)
+                    .map { rssChannel ->
+                        rssChannel
+                    }
+            }
+        }
     }
 }

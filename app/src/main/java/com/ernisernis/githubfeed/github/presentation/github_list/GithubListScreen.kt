@@ -54,7 +54,7 @@ fun GithubListScreenRoot(
     LaunchedEffect(key1 = state.urlLink != null) {
         if (state.urlLink != null) {
             state.urlLink?.let {
-                onClick(DetailParams(url = it))
+                onClick(DetailParams(url = it, feedsType = state.feedsType))
                 viewModel.clearUrlLink()
             }
         }

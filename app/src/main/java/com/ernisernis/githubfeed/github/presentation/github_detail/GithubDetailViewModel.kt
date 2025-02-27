@@ -35,7 +35,7 @@ class GithubDetailViewModel @Inject constructor(
 
     fun initData(detailParams: DetailParams) {
         viewModelScope.launch {
-            githubRepository.getFeedsDetail(detailParams.url)
+            githubRepository.getFeedsDetail(detailParams.url, detailParams.feedsType)
                 .onSuccess { rssChannel ->
                     _state.update {
                         it.copy(
@@ -44,7 +44,7 @@ class GithubDetailViewModel @Inject constructor(
                         )
                     }
                 }
-                .onError {
+                .onError { error ->
                     // TODO: Handle error
                     _state.update {
                         it.copy(

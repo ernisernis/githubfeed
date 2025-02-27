@@ -7,5 +7,6 @@ import com.prof18.rssparser.model.RssChannel
 
 interface RemoteGithubDataSource {
     suspend fun getFeeds(): Result<FeedsDto, DataError.Remote>
+    suspend fun getFeedsDetailFromRawUrl(url: String): Result<RssChannel, DataError.Remote>
     suspend fun getFeedsDetail(url: String): Result<RssChannel, DataError.Remote>
 }
