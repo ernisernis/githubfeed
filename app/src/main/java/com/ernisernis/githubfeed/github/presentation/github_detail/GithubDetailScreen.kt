@@ -13,10 +13,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
+import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.ernisernis.githubfeed.github.presentation.components.GithubLoadingIndicator
 import com.ernisernis.githubfeed.github.presentation.github_detail.components.RssListItem
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
@@ -57,8 +57,8 @@ fun GithubDetailScreen(
 ) {
     LazyColumn(
         modifier = modifier,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
-        contentPadding = PaddingValues(12.dp)
+        verticalArrangement = Arrangement.spacedBy(Dimens.GithubDetailItemSpacing),
+        contentPadding = PaddingValues(Dimens.GithubDetailContainerPadding)
     ) {
         state.rssChannel?.title?.let { title ->
             item {

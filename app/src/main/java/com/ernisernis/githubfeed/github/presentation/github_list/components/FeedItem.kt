@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
 
 @Composable
@@ -30,8 +30,8 @@ fun FeedItem(
             .clip(RoundedCornerShape(12))
             .background(MaterialTheme.colorScheme.secondary)
             .clickable { onClick() }
-            .padding(12.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
+            .padding(Dimens.GithubListItemPadding),
+        verticalArrangement = Arrangement.spacedBy(Dimens.GithubListItemSpacing)
     ) {
         Text(
             text = title,

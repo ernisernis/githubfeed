@@ -14,9 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import coil3.compose.AsyncImage
+import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.prof18.rssparser.model.RssItem
 
 @Composable
@@ -29,11 +29,11 @@ fun RssListItem(
             .fillMaxWidth()
             .clip(RoundedCornerShape(4))
             .background(MaterialTheme.colorScheme.tertiary)
-            .padding(6.dp),
-        verticalArrangement = Arrangement.spacedBy(4.dp),
+            .padding(Dimens.GithubDetailItemPadding),
+        verticalArrangement = Arrangement.spacedBy(Dimens.GithubDetailRssItemSpacing),
     ) {
         Row(
-            horizontalArrangement = Arrangement.spacedBy(4.dp)
+            horizontalArrangement = Arrangement.spacedBy(Dimens.GithubDetailRssItemSpacing)
         ) {
             item.author?.let {
                 Text(

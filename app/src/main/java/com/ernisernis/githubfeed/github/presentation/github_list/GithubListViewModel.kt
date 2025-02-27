@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ernisernis.githubfeed.core.domain.util.onError
 import com.ernisernis.githubfeed.core.domain.util.onSuccess
-import com.ernisernis.githubfeed.core.presentation.formatUrlWithReplacements
-import com.ernisernis.githubfeed.core.presentation.validateContentType
+import com.ernisernis.githubfeed.core.presentation.util.formatUrlWithReplacements
+import com.ernisernis.githubfeed.core.presentation.util.validateContentType
 import com.ernisernis.githubfeed.github.domain.FeedsType
 import com.ernisernis.githubfeed.github.domain.GithubRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
