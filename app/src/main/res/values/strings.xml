@@ -13,4 +13,10 @@
     <string name="title_discussions">Discussions</string>
     <string name="title_discussions_category">Discussions Category</string>
     <string name="title_security_advisories">Security Advisories</string>
+    <string name="error_username_empty">Username should not be empty!</string>
+    <string name="error_username_long">Username is too long!</string>
+    <string name="error_repo_empty">Repository should not be empty!</string>
+    <string name="error_repo_long">Repository name is too long!</string>
+    <string name="error_category_empty">Category should not be empty!</string>
+    <string name="error_category_long">Category name is too long!</string>
 </resources>

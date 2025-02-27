@@ -12,6 +12,9 @@ import android.content.Context
 import androidx.room.Room
 import com.ernisernis.githubfeed.github.data.database.FeedsDao
 import com.ernisernis.githubfeed.github.data.database.GithubDatabase
+import com.ernisernis.githubfeed.github.presentation.models.ValidateCategory
+import com.ernisernis.githubfeed.github.presentation.models.ValidateRepository
+import com.ernisernis.githubfeed.github.presentation.models.ValidateUsername
 import com.prof18.rssparser.RssParser
 import com.prof18.rssparser.RssParserBuilder
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -76,5 +79,23 @@ object AppModule {
             charset = Charsets.UTF_8,
         )
         return builder.build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideValidateUsername(): ValidateUsername {
+       return ValidateUsername()
+    }
+
+    @Provides
+    @Singleton
+    fun provideValidateRepository(): ValidateRepository {
+        return ValidateRepository()
+    }
+
+    @Provides
+    @Singleton
+    fun provideValidateCategory(): ValidateCategory {
+        return ValidateCategory()
     }
 }

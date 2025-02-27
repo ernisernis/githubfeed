@@ -102,7 +102,8 @@ fun GithubListScreen(
                         },
                         onDoneAction = {
                             onAction(GithubListAction.OnFeedsClick(FeedsType.USER))
-                        }
+                        },
+                        errorMessage = state.linkUserState.inputError,
                     )
                 }
             )
@@ -122,7 +123,8 @@ fun GithubListScreen(
                         labelText = stringResource(state.repoDiscussionsState.input1Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsInput1Change(it))
-                        }
+                        },
+                        errorMessage = state.repoDiscussionsState.input1Error,
                     )
                     FeedInputField(
                         inputText = state.repoDiscussionsState.input2,
@@ -132,7 +134,8 @@ fun GithubListScreen(
                         },
                         onDoneAction = {
                             onAction(GithubListAction.OnFeedsClick(FeedsType.REPO_DISCUSSIONS))
-                        }
+                        },
+                        errorMessage = state.repoDiscussionsState.input2Error,
                     )
                 }
             )
@@ -152,14 +155,16 @@ fun GithubListScreen(
                         labelText = stringResource(state.repoDiscussionsCategoryState.input1Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsCategoryInput1Change(it))
-                        }
+                        },
+                        errorMessage = state.repoDiscussionsCategoryState.input1Error,
                     )
                     FeedInputField(
                         inputText = state.repoDiscussionsCategoryState.input2,
                         labelText = stringResource(state.repoDiscussionsCategoryState.input2Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsCategoryInput2Change(it))
-                        }
+                        },
+                        errorMessage = state.repoDiscussionsCategoryState.input2Error,
                     )
                     FeedInputField(
                         inputText = state.repoDiscussionsCategoryState.input3,
@@ -169,7 +174,8 @@ fun GithubListScreen(
                         },
                         onDoneAction = {
                             onAction(GithubListAction.OnFeedsClick(FeedsType.REPO_DISCUSSIONS_CATEGORY))
-                        }
+                        },
+                        errorMessage = state.repoDiscussionsCategoryState.input3Error,
                     )
                 }
             )
