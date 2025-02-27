@@ -40,8 +40,8 @@ fun App() {
                 GithubListScreenRoot(
                     viewModel = viewModel,
                     modifier = Modifier
-                        .statusBarsPadding()
                         .background(MaterialTheme.colorScheme.background)
+                        .systemBarsPadding()
                         .fillMaxSize(),
                     onClick = { detailParams ->
                         navController.navigate(Route.GithubDetail(detailParams))
