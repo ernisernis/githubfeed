@@ -20,6 +20,7 @@ import coil3.compose.AsyncImage
 import com.ernisernis.githubfeed.R
 import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.ernisernis.githubfeed.core.presentation.util.getFormattedDateTime
+import com.ernisernis.githubfeed.github.presentation.components.GithubErrorScreen
 import com.ernisernis.githubfeed.github.presentation.components.GithubLoadingIndicator
 import com.ernisernis.githubfeed.github.presentation.github_detail.components.RssListItem
 import com.ernisernis.githubfeed.ui.theme.GithubFeedTheme
@@ -39,6 +40,11 @@ fun GithubDetailScreenRoot(
             modifier = modifier,
             color = MaterialTheme.colorScheme.onTertiaryContainer,
         )
+    } else if (state.errorMessage != null) {
+        GithubErrorScreen(
+            modifier = modifier,
+            errorMessage = state.errorMessage
+        )
     } else {
         GithubDetailScreen(
             state = state,
@@ -49,7 +55,6 @@ fun GithubDetailScreenRoot(
             onAction = viewModel::onAction,
         )
     }
-
 }
 
 @Composable
