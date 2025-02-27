@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">GithubFeed</string>
+    <string name="by_author">By: %s</string>
+    <string name="at_pub_date">At: %s</string>
+    <string name="comments_url">Comments url: %s</string>
+    <string name="last_build_date">Last Build Date: %s</string>
+    <string name="update_period">Update period: %s</string>
+    <string name="title_timeline">Timeline</string>
+    <string name="user_label">user</string>
+    <string name="title_user">User</string>
+    <string name="repo_label">repo</string>
+    <string name="category_label">category</string>
+    <string name="title_discussions">Discussions</string>
+    <string name="title_discussions_category">Discussions Category</string>
+    <string name="title_security_advisories">Security Advisories</string>
 </resources>

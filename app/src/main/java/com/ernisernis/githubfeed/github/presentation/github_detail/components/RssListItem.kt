@@ -13,9 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.viewinterop.AndroidView
 import coil3.compose.AsyncImage
+import com.ernisernis.githubfeed.R
 import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.prof18.rssparser.model.RssItem
 
@@ -37,7 +39,7 @@ fun RssListItem(
         ) {
             item.author?.let {
                 Text(
-                    text = "By: $it",
+                    text = stringResource(R.string.by_author, it),
                     color = MaterialTheme.colorScheme.onTertiary,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
@@ -45,7 +47,7 @@ fun RssListItem(
             }
             item.pubDate?.let {
                 Text(
-                    text = "At: $it",
+                    text = stringResource(R.string.at_pub_date, it),
                     color = MaterialTheme.colorScheme.onTertiary,
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Bold,
@@ -82,7 +84,7 @@ fun RssListItem(
         }
         item.commentsUrl?.let {
             Text(
-                text = "Comments url: $it",
+                text = stringResource(R.string.comments_url, it),
                 color = MaterialTheme.colorScheme.onTertiary,
                 style = MaterialTheme.typography.bodyMedium,
             )

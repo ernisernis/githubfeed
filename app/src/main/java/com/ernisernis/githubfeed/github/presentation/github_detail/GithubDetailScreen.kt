@@ -12,10 +12,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImage
+import com.ernisernis.githubfeed.R
 import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.ernisernis.githubfeed.github.presentation.components.GithubLoadingIndicator
 import com.ernisernis.githubfeed.github.presentation.github_detail.components.RssListItem
@@ -60,10 +62,10 @@ fun GithubDetailScreen(
         verticalArrangement = Arrangement.spacedBy(Dimens.GithubDetailItemSpacing),
         contentPadding = PaddingValues(Dimens.GithubDetailContainerPadding)
     ) {
-        state.rssChannel?.title?.let { title ->
+        state.rssChannel?.title?.let {
             item {
                 Text(
-                    text = title,
+                    text = it,
                     modifier = Modifier
                         .animateItem(),
                     style = MaterialTheme.typography.titleLarge,
@@ -71,10 +73,10 @@ fun GithubDetailScreen(
                 )
             }
         }
-        state.rssChannel?.link?.let { link ->
+        state.rssChannel?.link?.let {
             item {
                 Text(
-                    text = link,
+                    text = it,
                     modifier = Modifier
                         .animateItem(),
                     style = MaterialTheme.typography.titleMedium,
@@ -82,10 +84,10 @@ fun GithubDetailScreen(
                 )
             }
         }
-        state.rssChannel?.description?.let { description ->
+        state.rssChannel?.description?.let {
             item {
                 Text(
-                    text = description,
+                    text = it,
                     modifier = Modifier
                         .animateItem(),
                     style = MaterialTheme.typography.titleSmall,
@@ -101,10 +103,10 @@ fun GithubDetailScreen(
                 )
             }
         }
-        state.rssChannel?.lastBuildDate?.let { lastBuildDate ->
+        state.rssChannel?.lastBuildDate?.let {
             item {
                 Text(
-                    text = "Last Build Date: $lastBuildDate",
+                    text = stringResource(R.string.last_build_date, it),
                     modifier = Modifier
                         .animateItem(),
                     style = MaterialTheme.typography.bodyMedium,
@@ -112,10 +114,10 @@ fun GithubDetailScreen(
                 )
             }
         }
-        state.rssChannel?.updatePeriod?.let { updatePeriod ->
+        state.rssChannel?.updatePeriod?.let {
             item {
                 Text(
-                    text = "Update period: $updatePeriod",
+                    text = stringResource(R.string.update_period, it),
                     modifier = Modifier
                         .animateItem(),
                     style = MaterialTheme.typography.bodyMedium,

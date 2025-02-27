@@ -12,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.ernisernis.githubfeed.R
 import com.ernisernis.githubfeed.app.DetailParams
 import com.ernisernis.githubfeed.core.presentation.util.Dimens
 import com.ernisernis.githubfeed.github.domain.FeedsType
@@ -76,7 +78,7 @@ fun GithubListScreen(
         // Timeline
         if (state.timelineState.showSection) {
             FeedItem(
-                title = state.timelineState.title,
+                title = stringResource(state.timelineState.title),
                 urlPathLink = state.timelineState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.TIMELINE))
@@ -87,7 +89,7 @@ fun GithubListScreen(
         // User
         if (state.linkUserState.showSection) {
             FeedItem(
-                title = state.linkUserState.title,
+                title = stringResource(state.linkUserState.title),
                 urlPathLink = state.linkUserState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.USER))
@@ -95,7 +97,7 @@ fun GithubListScreen(
                 inputContent = {
                     FeedInputField(
                         inputText = state.linkUserState.input,
-                        labelText = state.linkUserState.inputLabel,
+                        labelText = stringResource(state.linkUserState.inputLabel),
                         onTextChange = {
                             onAction(GithubListAction.OnLinkUserInputChange(it))
                         }
@@ -107,7 +109,7 @@ fun GithubListScreen(
         // Discussions
         if (state.repoDiscussionsState.showSection) {
             FeedItem(
-                title = state.repoDiscussionsState.title,
+                title = stringResource(state.repoDiscussionsState.title),
                 urlPathLink = state.repoDiscussionsState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.REPO_DISCUSSIONS))
@@ -115,14 +117,14 @@ fun GithubListScreen(
                 inputContent = {
                     FeedInputField(
                         inputText = state.repoDiscussionsState.input1,
-                        labelText = state.repoDiscussionsState.input1Label,
+                        labelText = stringResource(state.repoDiscussionsState.input1Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsInput1Change(it))
                         }
                     )
                     FeedInputField(
                         inputText = state.repoDiscussionsState.input2,
-                        labelText = state.repoDiscussionsState.input2Label,
+                        labelText = stringResource(state.repoDiscussionsState.input2Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsInput2Change(it))
                         }
@@ -134,7 +136,7 @@ fun GithubListScreen(
         // Discussions Category
         if (state.repoDiscussionsCategoryState.showSection) {
             FeedItem(
-                title = state.repoDiscussionsCategoryState.title,
+                title = stringResource(state.repoDiscussionsCategoryState.title),
                 urlPathLink = state.repoDiscussionsCategoryState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.REPO_DISCUSSIONS_CATEGORY))
@@ -142,21 +144,21 @@ fun GithubListScreen(
                 inputContent = {
                     FeedInputField(
                         inputText = state.repoDiscussionsCategoryState.input1,
-                        labelText = state.repoDiscussionsCategoryState.input1Label,
+                        labelText = stringResource(state.repoDiscussionsCategoryState.input1Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsCategoryInput1Change(it))
                         }
                     )
                     FeedInputField(
                         inputText = state.repoDiscussionsCategoryState.input2,
-                        labelText = state.repoDiscussionsCategoryState.input2Label,
+                        labelText = stringResource(state.repoDiscussionsCategoryState.input2Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsCategoryInput2Change(it))
                         }
                     )
                     FeedInputField(
                         inputText = state.repoDiscussionsCategoryState.input3,
-                        labelText = state.repoDiscussionsCategoryState.input3Label,
+                        labelText = stringResource(state.repoDiscussionsCategoryState.input3Label),
                         onTextChange = {
                             onAction(GithubListAction.OnRepoDiscussionsCategoryInput3Change(it))
                         }
@@ -168,7 +170,7 @@ fun GithubListScreen(
         // Security Advisories
         if (state.securityAdvisoriesState.showSection) {
             FeedItem(
-                title = state.securityAdvisoriesState.title,
+                title = stringResource(state.securityAdvisoriesState.title),
                 urlPathLink = state.securityAdvisoriesState.href,
                 onClick = {
                     onAction(GithubListAction.OnFeedsClick(FeedsType.SECURITY_ADVISORIES))

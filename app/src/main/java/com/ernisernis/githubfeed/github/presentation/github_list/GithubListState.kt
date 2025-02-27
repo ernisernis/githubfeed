@@ -1,7 +1,11 @@
 package com.ernisernis.githubfeed.github.presentation.github_list
 
+import androidx.annotation.StringRes
+import androidx.compose.runtime.Stable
+import com.ernisernis.githubfeed.R
 import com.ernisernis.githubfeed.github.domain.FeedsType
 
+@Stable
 data class GithubListState(
     val loading: Boolean = true,
     val urlLink: String? = null,
@@ -13,48 +17,53 @@ data class GithubListState(
     val securityAdvisoriesState: SecurityAdvisoriesState = SecurityAdvisoriesState()
 )
 
+@Stable
 data class TimelineState(
-    val title: String = "Timeline",
+    @StringRes val title: Int = R.string.title_timeline,
     val href: String? = null,
     val type: String? = null,
     val showSection: Boolean = false,
 )
 
+@Stable
 data class LinkUserState(
-    val title: String = "User",
+    @StringRes val title: Int = R.string.title_user,
     val input: String = "",
-    val inputLabel: String = "user",
+    @StringRes val inputLabel: Int = R.string.user_label,
     val href: String? = null,
     val type: String? = null,
     val showSection: Boolean = false,
 )
 
+@Stable
 data class RepositoryDiscussionsState(
-    val title: String = "Discussions",
+    @StringRes val title: Int = R.string.title_discussions,
     val input1: String = "",
-    val input1Label: String = "user",
+    @StringRes val input1Label: Int = R.string.user_label,
     val input2: String = "",
-    val input2Label: String = "repo",
+    @StringRes val input2Label: Int = R.string.repo_label,
     val href: String? = null,
     val type: String? = null,
     val showSection: Boolean = false,
 )
 
+@Stable
 data class RepositoryDiscussionsCategoryState(
-    val title: String = "Discussions Category",
+    @StringRes val title: Int = R.string.title_discussions_category,
     val input1: String = "",
-    val input1Label: String = "user",
+    @StringRes val input1Label: Int = R.string.user_label,
     val input2: String = "",
-    val input2Label: String = "repo",
+    @StringRes val input2Label: Int = R.string.repo_label,
     val input3: String = "",
-    val input3Label: String = "category",
+    @StringRes val input3Label: Int = R.string.category_label,
     val href: String? = null,
     val type: String? = null,
     val showSection: Boolean = false,
 )
 
+@Stable
 data class SecurityAdvisoriesState(
-    val title: String = "Security Advisories",
+    @StringRes val title: Int = R.string.title_security_advisories,
     val href: String? = null,
     val type: String? = null,
     val showSection: Boolean = false,
