@@ -120,6 +120,9 @@ class GithubListViewModel @Inject constructor(
                     state.value.linkUserState.input.trim()
                 ),
                 feedsType = FeedsType.USER,
+                linkUserState = it.linkUserState.copy(
+                    inputError = null,
+                )
             ) }
         }
     }
@@ -151,6 +154,10 @@ class GithubListViewModel @Inject constructor(
                         state.value.repoDiscussionsState.input2.trim(),
                     ),
                     feedsType = FeedsType.REPO_DISCUSSIONS,
+                    repoDiscussionsState = it.repoDiscussionsState.copy(
+                        input1Error = null,
+                        input2Error = null,
+                    )
                 )
             }
         }
@@ -187,6 +194,11 @@ class GithubListViewModel @Inject constructor(
                         state.value.repoDiscussionsCategoryState.input3.trim(),
                     ),
                     feedsType = FeedsType.REPO_DISCUSSIONS_CATEGORY,
+                    repoDiscussionsCategoryState = it.repoDiscussionsCategoryState.copy(
+                        input1Error = null,
+                        input2Error = null,
+                        input3Error = null,
+                    )
                 )
             }
         }
