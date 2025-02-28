@@ -17,7 +17,7 @@ package com.ernisernis.githubfeed.core.presentation.util
         - url = "https://github.com/{user}/{repo}/categories/{category}", replacement = "test", "abc1", "book"
             - output: "https://github.com/test/abc1/cateogories/book"
 
-    Also, we add ".atom" to the end of the url so we can fetch Atom contentType out of it
+    Also, we add ".atom" to the end of the url so we can fetch Atom contentType out of it (to those only with replacements)
  */
 fun formatUrlWithReplacements(
     url: String?,
